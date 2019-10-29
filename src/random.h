@@ -28,11 +28,11 @@ public:
   The additional parameters are the standard parameters of these distributions.
  */
 ///@{
-    void uniform_double(std::vector<double>&, double lower=0, double upper=1);
+    void uniform_double(std::vector<double>& v, double lower=0, double upper=1);
     double uniform_double(double lower=0, double upper=1);
-    void normal(std::vector<double>&, double mean=0, double sd=1);
+    void normal(std::vector<double>& v, double mean=0, double sd=1);
     double normal(double mean=0, double sd=1);
-    void poisson(std::vector<int>&, double mean=1);
+    void poisson(std::vector<int>& v, double mean=1);
     int poisson(double mean=1);
 ///@}
 /*! @name Auxiliary function

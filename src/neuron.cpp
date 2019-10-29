@@ -47,9 +47,9 @@ bool Neuron::is_type(const std::string &_t) {
 }
 
 void Neuron::step() {
+    _poten += (0.5*(0.04*_poten*_poten+5*_poten+140-_recov+_input));
     _poten += 0.5*(0.04*_poten*_poten+5*_poten+140-_recov+_input);
-    _poten += 0.5*(0.04*_poten*_poten+5*_poten+140-_recov+_input);
-    _recov += params.a*(params.b*_poten-_recov);
+    _recov += (params.a*(params.b*_poten-_recov));
 }
 
 std::string Neuron::formatted_params() const {
@@ -68,3 +68,4 @@ std::string Neuron::formatted_values() const {
     ss << _poten << '\t' << _recov << '\t' << _input;
     return ss.str();
 }
+

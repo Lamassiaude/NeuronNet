@@ -34,9 +34,11 @@ public:
   After firing, the neuron is reset: \ref _poten is set to \p c, \ref _recov is increased by \p d.
  */
     void reset() {_poten=params.c; _recov+=params.d;}
+   
 /*!
   One step of time evolution: \ref _poten and \ref _recov are updated according to the Izhikevich equations.
  */
+   
     void step();
     void potential(const double &_p) {_poten = _p;}
     double potential() const {return _poten;}
@@ -63,6 +65,7 @@ public:
     }
 ///@}
 
+    
 private:
 /*! @name Neuron parameters 
   \p a, \p b, \p c, \p d, and the boolean \p inhib if neuron is inhibitory.

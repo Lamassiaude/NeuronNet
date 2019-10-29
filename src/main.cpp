@@ -23,6 +23,7 @@
 RandomNumbers *_RNG;
 
 int main(int argc, char **argv) {
+    
     _RNG = new RandomNumbers;
     try {
         Simulation Sim(argc, argv);

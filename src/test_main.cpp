@@ -45,6 +45,7 @@ TEST(neuronTest, step) {
     EXPECT_TRUE(n1.firing());
 }
 
+
 TEST(networkTest, initialize) {
     net.resize(nlinks);
     EXPECT_EQ(nlinks, net.size());
@@ -61,8 +62,11 @@ TEST(networkTest, initialize) {
     EXPECT_NEAR(0.2*_REST_VAL_*(1+0.1*_BVAR_), mean, 1e-1);
     EXPECT_NEAR(-0.2*_REST_VAL_*_BVAR_*sqrt(0.194), sdv, 1.5e-1);
 }
+ 
+//**********************************************
 
 TEST(networkTest, connect) {
+
     bool trylink = net.add_link(0, 0, 10);
     EXPECT_FALSE(trylink);
     trylink = net.add_link(0, nlinks+1, .5);
@@ -84,19 +88,25 @@ TEST(networkTest, connect) {
     size_t inhib1 = net.neighbors(excit_idx).front().first;
     int ifirs(0), efirs(0);
 // --- should fire once within 10 time steps
+    
     for (size_t t=0; t<10; t++) {
         net.step(noisev);
         ifirs += (int)net.neuron(inhib1).firing();
         efirs += (int)net.neuron(excit_idx).firing();
+        
     }
+    
     EXPECT_EQ(1, ifirs);
     EXPECT_EQ(1, efirs);
+    
+     
 // --- input to excitatory should be noise
 // --- input to inhibitory should be .4*noise
     EXPECT_DOUBLE_EQ(noise,    net.neuron(excit_idx).input());
     EXPECT_DOUBLE_EQ(.4*noise, net.neuron(inhib1).input());
+    
 }
-
+//*********************************************
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
